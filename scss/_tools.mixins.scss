@@ -1,0 +1,75 @@
+@mixin media($sizeMin: "", $sizeMax: "", $target: "") {
+  $content: "loading mixin..";
+  $seperator1: "";
+  $seperator2: "";
+
+  // check if there is a sizeMin
+  @if str_length($sizeMin) > 1 {
+    $sizeMin: getMapVal($breakpoints, $sizeMin);
+    $sizeMin: "(min-width: #{$sizeMin}px)";
+  }
+
+  // check if there is a sizeMax
+  @if str_length($sizeMax) > 1 {
+    $sizeMax: getMapVal($breakpoints, $sizeMax);
+    $sizeMax: "(max-width: #{$sizeMax - 1}px)";
+  }
+
+  // check if there is a target (eg screen or print)
+  @if str_length($target) > 1 {
+    @if $target != screen and $target != print and $target != retina {
+      @warn '@mixin media() => unknown media type';
+    }
+    @if $target == retina {
+      $target: "screen and (-webkit-min-device-pixel-ratio: 2)," +
+        "only screen and (min--moz-device-pixel-ratio: 2)," +
+        "only screen and (-o-min-device-pixel-ratio: 2/1)," +
+        "only screen and (min-device-pixel-ratio: 2)," +
+        "only screen and (min-resolution: 192dpi)," +
+        "only screen and (min-resolution: 2dppx)";
+      $sizeMin: "";
+      $sizeMax: "";
+    }
+  }
+
+  @if str_length($target) > 1 and str_length($sizeMin) > 1 {
+    $seperator1: " and ";
+  } @else if str_length($target) > 1 and str_length($sizeMax) > 1 {
+    $seperator1: " and ";
+  }
+
+  @if str_length($sizeMin) > 1 and str_length($sizeMax) > 1 {
+    $seperator2: " and ";
+  }
+
+  // build the media tag
+  @media #{$target}#{$seperator1}#{$sizeMin}#{$seperator2}#{$sizeMax} {
+    @content;
+  }
+}
+
+@mixin font-size($size, $withLineHeight: false, $isHeading: false) {
+  @if index($font-size-range, $size) {
+    font-size: $size + px;
+    font-size: ($size / $font-size-base) * 1rem;
+
+    @if $withLineHeight {
+      @if $isHeading {
+        line-height: ($size * 1.25) + px;
+      } @else {
+        line-height: ($size * 1.5) + px;
+      }
+    }
+  } @else {
+    @debug ("Please stick to the defined font-sizes: #{$font-size-range}");
+    @warn "Sorry, but #{$size} is not a valid value for $font-size-range.";
+  }
+}
+
+@mixin opacity($tone) {
+  @if map-has-key($opacity, $tone) {
+    opacity: getMapVal($opacity, $tone) / 100;
+    filter: alpha(opactiy=(getMapVal($opacity, $tone)));
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{getMapVal($opacity, $tone)})";
+  }
+}

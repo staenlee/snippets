@@ -1,0 +1,14 @@
+/* autoprefixer grid: autoplace */
+@import "./settings.common";
+@import "./tools.functions";
+@import "./tools.mixins";
+@import "./objects.btn";
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}

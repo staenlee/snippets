@@ -1,0 +1,15 @@
+@mixin btn {
+  appearance: none;
+  border: 0;
+  background: color(mono, white);
+  white-space: nowrap;
+  line-height: 125%;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: $gutter $gutter * 2;
+  text-decoration: none;
+  color: color(blue);
+  box-shadow: 0 1px 2px 0 color(grey, lightest);
+  display: inline-block;
+  text-align: center;
+}

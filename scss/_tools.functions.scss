@@ -1,0 +1,42 @@
+// GET VALUE FROM LIST
+@function getMapVal($map, $key) {
+  @return map-get($map, $key);
+}
+
+// GET KEY FROM LIST
+@function getMapKey($map, $key...) {
+  @return map-keys($map);
+}
+
+// GET VALUE FROM MULTIDIMENSIONAL LIST
+@function multiMapVal($map, $key, $key--child) {
+  @return map-get(map-get($map, $key), $key--child);
+}
+
+// GET VALUE FROM COLOR LIST
+@function color($color, $tone: "base") {
+  @return multiMapVal($colors, $color, $tone);
+}
+
+// GET FIRST VALUE FROM LIST
+@function first($list) {
+  @return nth($list, 1);
+}
+
+// GET LAST VALUE FROM LIST
+@function last($list) {
+  @return nth($list, length($list));
+}
+
+// REVERSE LIST
+@function reverse($list, $recursive: false) {
+  $result: ();
+  @for $i from length($list) * -1 through -1 {
+    @if type-of(nth($list, abs($i))) == list and $recursive {
+      $result: append($result, reverse(nth($list, abs($i)), $recursive));
+    } @else {
+      $result: append($result, nth($list, abs($i)));
+    }
+  }
+  @return $result;
+}

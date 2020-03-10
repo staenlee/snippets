@@ -1,0 +1,73 @@
+$border-radius: 6px !global;
+$gutter: 16px !global;
+$font-size-base: 12 !global;
+$font-size-range: 8 10 12 14 16 18 20 22 24 26 32 36 42 48 56 64 72;
+$line-height-base: $font-size-base * 1.5;
+$font-family: Lato, Arial, Helvetica, Sans, Sans-Serif, "Sans Serif" !default;
+
+$breakpoints: (
+  mobile: 320,
+  x-mobile: 480,
+  tablet: 600,
+  x-tablet: 780,
+  desktop: 980,
+  desktop-large: 1280
+) !global;
+
+$colors: (
+  mono: (
+    black: #000,
+    white: #fff
+  ),
+  grey: (
+    lightest: #ebeced,
+    ultralight: #cdd0d2,
+    lighter: #9ba2a6,
+    light: #697379,
+    base: #37454d,
+    dark: #293339
+  ),
+  orange: (
+    lightest: #fdf3e5,
+    ultralight: #fce3bf,
+    lighter: #f9c77f,
+    light: #f6ab3f,
+    base: #f48f00,
+    dark: #b76b00
+  ),
+  red: (
+    lightest: #f9ecea,
+    very-light: #f1d1cb,
+    lighter: #e4a497,
+    light: #d67763,
+    base: #c94a30,
+    dark: #963724
+  ),
+  green: (
+    lightest: #eff5e5,
+    ultralight: #d8e8bf,
+    lighter: #b2d17f,
+    light: #8cba3f,
+    base: #3aaa35,
+    dark: #4c7b00
+  ),
+  blue: (
+    lightest: #e5f2f6,
+    ultralight: #bfdfea,
+    lighter: #7fbfd6,
+    light: #3f9fc1,
+    base: #117ad8,
+    dark: #005f81
+  )
+) !global;
+
+$opacity: (
+  full: 100,
+  strong: 90,
+  soft: 75,
+  visual: 50,
+  floating: 25
+) !global;
+
+// GRID CONFIG
+$grid-columns: 12 !global;
